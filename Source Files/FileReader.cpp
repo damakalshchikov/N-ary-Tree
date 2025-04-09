@@ -71,6 +71,19 @@ void FileReader::buildTreeConnections(vector<Node*>& tree, const int& arity) {
             }
         }
     }
+
+    // // Тестовый вывод для проверки потомков
+    // for (int i = 0; i < limit; i++) {
+    //     if (!tree[i]) continue;
+    //
+    //     vector<Node*> children = tree[i]->getChildren();
+    //
+    //     for (int j = 0; j < children.size(); j++) {
+    //         if (!children[j]) continue;
+    //
+    //         wcout << L"Потомок вершины " << tree[i]->getNumber() << ": " << children[j]->getNumber() << endl;
+    //     }
+    // }
 }
 
 /**

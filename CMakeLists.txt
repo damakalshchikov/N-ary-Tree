@@ -8,4 +8,7 @@ add_executable(N_aryTree "Source Files/main.cpp"
         "Source Files/Node.cpp"
         "Header Files/FileReader.h"
         "Source Files/FileReader.cpp"
-        "Source Files/FileReader.h")
+        "Header Files/FileGenerator.h"
+        "Source Files/FileGenerator.cpp"
+        "Header Files/FinderLongestOddPath.h"
+        "Source Files/FinderLongestOddPath.cpp")

@@ -13,15 +13,18 @@ using namespace std;
 /**
  * Читает файл и преобразует строки в узлы дерева или nullptr
  * @param fileName - имя файла
- * @param arity - арность дерева
  * @return Вектор указателей на узлы дерева
  */
-vector<Node*> FileReader::readFile(const string& fileName, const int& arity) {
+vector<Node*> FileReader::readFile(const string& fileName) {
     vector<Node*> tree;
     ifstream file(fileName);
     string line;
 
     if (!file.is_open()) throw runtime_error("Не удалось открыть файл: " + fileName);
+
+    getline(file, line);
+    // Арность дерева
+    const int arity = stoi(line);
 
     while (getline(file, line)) {
         // Удаляем служебные символы
@@ -68,4 +71,16 @@ void FileReader::buildTreeConnections(vector<Node*>& tree, const int& arity) {
             }
         }
     }
+}
+
+/**
+ * Освобождает память, выделенную под дерево
+ * @param tree - вектор указателей на узлы дерева
+ */
+void FileReader::cleanUpTree(vector<Node*>& tree) {
+    for (auto node: tree) {
+        if (node) delete node;
+    }
+
+    tree.clear();
 }

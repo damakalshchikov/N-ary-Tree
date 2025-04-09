@@ -18,10 +18,9 @@ public:
     /**
      * Читает файл и преобразует строки в узлы дерева или nullptr
      * @param fileName - имя файла
-     * @param arity - арность дерева
      * @return Вектор указателей на узлы дерева
      */
-    static vector<Node*> readFile(const string& fileName, const int& arity);
+    static vector<Node*> readFile(const string& fileName);
 
     /**
      * Устанавливает связи между вершинами в соответствии со структурой файла
@@ -29,6 +28,12 @@ public:
      * @param arity - арность дерева
      */
     static void buildTreeConnections(vector<Node*>& tree, const int& arity);
+
+    /**
+     * Освобождает память, выделенную под дерево
+     * @param tree - вектор указателей на узлы дерева
+     */
+    static void cleanUpTree(vector<Node*>& tree);
 };
 
 #endif //FILEREADER_H

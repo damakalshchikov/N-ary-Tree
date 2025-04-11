@@ -64,10 +64,11 @@ int main(const int argc, char *argv[]) {
     }
 
     // Создаём изображение
-    PythonBridge::drawTree(tree);
+    PythonBridge::drawTree(tree, longestPath);
 
-    // Очищаем память
+    // Очищаем память и завершаем работу интерпретатора Python
     FileReader::cleanUpTree(tree);
+    PythonBridge::finalize();
 
     return 0;
 }

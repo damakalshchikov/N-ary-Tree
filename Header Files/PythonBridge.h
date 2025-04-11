@@ -29,9 +29,10 @@ public:
     /**
      * Создаёт изображение n-арного дерева
      * @param tree - вектор указателей на узлы n-арного дерева
+     * @param path - найденный путь с нечётными вершинами
      * @param outputPng - имя выходного изображения
      */
-    static void drawTree(const vector<Node*>& tree, const string& outputPng = "./Images/tree.png");
+    static void drawTree(const vector<Node*>& tree, const vector<int>& path, const string& outputPng = "./Images/tree.png");
 
 private:
     static bool isPythonInitialized;

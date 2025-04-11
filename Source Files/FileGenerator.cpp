@@ -43,7 +43,7 @@ void FileGenerator::generateTreeFile(const string &fileName, int &arity, int &no
 
             if (childIndex < nodeCount) {
                 // 90% вероятность создания узла
-                tree[childIndex] = (rng() % 100 < 90);
+                tree[childIndex] = (rng() % 100 < 101);
             }
         }
     }

@@ -4,6 +4,7 @@
 #include "../Header Files/FinderLongestOddPath.h"
 #include "../Header Files/FileGenerator.h"
 #include "../Header Files/FileReader.h"
+#include "../Header Files/PythonBridge.h"
 
 using namespace std;
 
@@ -61,6 +62,9 @@ int main(const int argc, char *argv[]) {
         wcout << L"Длина пути: " << longestPath.size() - 1 << endl;
         wcout << L"Время поиска путей: " << duration << L" мксек" << endl;
     }
+
+    // Создаём изображение
+    PythonBridge::drawTree(tree);
 
     // Очищаем память
     FileReader::cleanUpTree(tree);

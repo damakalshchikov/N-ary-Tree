@@ -43,10 +43,10 @@ void PythonBridge::finalize() {
 /**
  * Создаёт изображение n-арного дерева
  * @param tree - вектор указателей на узлы n-арного дерева
- * @param path
+ * @param path - самый длинный путь, который проходит по нечётным вершинам
  * @param outputPng - имя выходного изображения
  */
-void PythonBridge::drawTree(const vector<Node *> &tree, const vector<int> &path, const string &outputPng) {
+void PythonBridge::drawTree(const vector<Node*>& tree, const vector<int>& path, const string& outputPng) {
     // Если Python интерпретатор не инициализирован, то инициализируем его
     if (!isPythonInitialized) {
         initialize();

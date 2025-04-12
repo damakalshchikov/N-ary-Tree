@@ -1,7 +1,7 @@
 import pydot
 
 
-def draw_tree(nodes, path, output_png="./Images/tree.png"):
+def draw_tree(nodes, path, output_png="../Images/tree.png"):
     """
     Создаёт изображение n-арного дерева с выделенным найденный путём
 

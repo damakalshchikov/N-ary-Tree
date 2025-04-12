@@ -12,7 +12,7 @@
  * @param currentPath - текущий путь
  * @param longestPath - самый длинный найденный путь
  */
-void FinderLongestOddPath::findLongestOddPath(Node *node, vector<int> &currentPath, vector<int> &longestPath) {
+void FinderLongestOddPath::findLongestOddPath(Node* node, vector<int>& currentPath, vector<int>& longestPath) {
     if (!node) return;
 
     // Если узел чётный - прекращаем поиск по этой ветке

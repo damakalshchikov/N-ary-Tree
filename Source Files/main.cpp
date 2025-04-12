@@ -64,6 +64,7 @@ int main(const int argc, char *argv[]) {
     }
 
     // Создаём изображение
+    PythonBridge::initialize();
     PythonBridge::drawTree(tree, longestPath);
 
     // Очищаем память и завершаем работу интерпретатора Python

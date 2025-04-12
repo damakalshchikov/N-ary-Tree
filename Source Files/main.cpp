@@ -38,10 +38,10 @@ int main(const int argc, char *argv[]) {
 
     // Находим самый длинный путь от корня с нечётными значениями
     vector<int> currentPath;
-    vector<int> longestPath;
+    vector<vector<int>> longestPath;
     // Замеряем время поиска в мксек
     auto start = chrono::steady_clock::now();
-    FinderLongestOddPath::findLongestOddPath(tree[0], currentPath, longestPath);
+    FinderLongestOddPath::findLongestOddPath(tree[0], currentPath, longestPath, 0);
     auto end = chrono::steady_clock::now();
 
     // Результат замеров
@@ -53,9 +53,12 @@ int main(const int argc, char *argv[]) {
     } else {
         wcout << L"Самый длинный путь от корня, проходящий только по нечётным вершинам" << endl;
         for (int i = 0; i < longestPath.size(); i++) {
-            cout << longestPath[i];
-            if (i < longestPath.size() - 1) {
-                cout << " -> ";
+            for (int j = 0; j < longestPath[i].size(); j++) {
+                cout << longestPath[i][j];
+                if (j < longestPath[j].size() - 1) {
+                    cout << " -> ";
+                }
+                cout << endl;
             }
         }
         cout << endl;
@@ -65,7 +68,7 @@ int main(const int argc, char *argv[]) {
 
     // Создаём изображение
     PythonBridge::initialize();
-    PythonBridge::drawTree(tree, longestPath);
+    PythonBridge::drawTreeWithMultiplePaths(tree, longestPath);
 
     // Очищаем память и завершаем работу интерпретатора Python
     FileReader::cleanUpTree(tree);

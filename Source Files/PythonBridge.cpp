@@ -41,6 +41,44 @@ void PythonBridge::finalize() {
 }
 
 /**
+     * Создаёт изображение n-арного дерева с несколькими выделенными путями
+     * @param tree - вектор указателей на узлы n-арного дерева
+     * @param paths - найденные пути с нечётными вершинами
+     * @param pathIndex - номер пути
+     * @param outputPng - имя выходного изображения
+     */
+static void drawTreeWithMultiplePaths(const vector<Node*>& tree,
+                                    const vector<vector<int>>& paths,
+                                    int pathIndex = -1,
+                                    const string& outputPng = "./Images/tree.png") {
+    if (pathIndex >= 0 && pathIndex < paths.size()) {
+        string specificOutputPng = outputPng;
+        if (outputPng == "./Images/tree.png") {
+            specificOutputPng = "./Images/tree_path_" + to_string(pathIndex + 1) + ".png";
+        }
+        PythonBridge::drawTree(tree, paths[pathIndex], specificOutputPng);
+        return;
+    }
+
+    // Для визуализации множества путей необходимо модифицировать Python-код
+    // Пока реализуем как последовательный вызов drawTree для каждого пути
+    for (int i = 0; i < paths.size(); i++) {
+        string specificOutputPng;
+        if (outputPng == "./Images/tree.png") {
+            specificOutputPng = "./Images/tree_path_" + to_string(i + 1) + ".png";
+        } else {
+            size_t dotPos = outputPng.find_last_of(".");
+            if (dotPos != string::npos) {
+                specificOutputPng = outputPng.substr(0, dotPos) + "_path_" + to_string(i + 1) + outputPng.substr(dotPos);
+            } else {
+                specificOutputPng = outputPng + "_path_" + to_string(i + 1);
+            }
+        }
+        PythonBridge::drawTree(tree, paths[i], specificOutputPng);
+    }
+}
+
+/**
  * Создаёт изображение n-арного дерева
  * @param tree - вектор указателей на узлы n-арного дерева
  * @param path - самый длинный путь, который проходит по нечётным вершинам

@@ -34,6 +34,18 @@ public:
      */
     static void drawTree(const vector<Node*>& tree, const vector<int>& path, const string& outputPng = "./Images/tree.png");
 
+    /**
+     * Создаёт изображение n-арного дерева с несколькими выделенными путями
+     * @param tree - вектор указателей на узлы n-арного дерева
+     * @param paths - найденные пути с нечётными вершинами
+     * @param pathIndex - номер пути
+     * @param outputPng - имя выходного изображения
+     */
+    static void drawTreeWithMultiplePaths(const vector<Node*>& tree,
+                                        const vector<vector<int>>& paths,
+                                        int pathIndex = -1,
+                                        const string& outputPng = "./Images/tree.png");
+
 private:
     static bool isPythonInitialized;
 };

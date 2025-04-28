@@ -38,7 +38,7 @@ int main(const int argc, char *argv[]) {
 
     // Находим самый длинный путь от корня с нечётными значениями
     vector<int> currentPath;
-    vector<int> longestPath;
+    vector<vector<int>> longestPath;
     // Замеряем время поиска в мксек
     auto start = chrono::steady_clock::now();
     FinderLongestOddPath::findLongestOddPath(tree[0], currentPath, longestPath);
@@ -48,24 +48,32 @@ int main(const int argc, char *argv[]) {
     long duration = chrono::duration_cast<chrono::microseconds>(end - start).count();
 
     // Выводим найденный путь
-    if (longestPath.size() < 2) {
+    if (longestPath.empty()) {
         wcout << L"Самый длинный путь от корня с нечётными вершинами не найден" << endl;
     } else {
         wcout << L"Самый длинный путь от корня, проходящий только по нечётным вершинам" << endl;
         for (int i = 0; i < longestPath.size(); i++) {
-            cout << longestPath[i];
-            if (i < longestPath.size() - 1) {
-                cout << " -> ";
+            wcout << L"Путь №" << i + 1 << ": ";
+            for (int j = 0; j < longestPath[i].size(); j++) {
+                cout << longestPath[i][j];
+                if (j < longestPath[i].size() - 1) {
+                    cout << " -> ";
+                }
             }
+            cout << endl;
         }
         cout << endl;
-        wcout << L"Длина пути: " << longestPath.size() - 1 << endl;
+        wcout << L"Длина пути: " << longestPath[0].size() - 1 << endl;
         wcout << L"Время поиска путей: " << duration << L" мксек" << endl;
     }
 
-    // Создаём изображение
+    // Создаём изображение n-арного дерева
     PythonBridge::initialize();
-    PythonBridge::drawTree(tree, longestPath);
+
+    // Создаём изображения найденных путей
+    for (int i = 0; i < longestPath.size(); i++) {
+        PythonBridge::drawTree(tree, longestPath[i], "./Images/tree" + to_string(i + 1) + ".png");
+    }
 
     // Очищаем память и завершаем работу интерпретатора Python
     FileReader::cleanUpTree(tree);

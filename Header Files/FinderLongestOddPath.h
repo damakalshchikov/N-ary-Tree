@@ -17,7 +17,7 @@ public:
      * @param currentPath - текущий путь
      * @param longestPath - самый длинный найденный путь
      */
-    static void findLongestOddPath(Node* node, vector<int>& currentPath, vector<int>& longestPath);
+    static void findLongestOddPath(Node* node, vector<int>& currentPath, vector<vector<int>>& longestPath);
 };
 
 #endif //FINDERLONGESTODDPATH_H
